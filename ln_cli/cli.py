@@ -1,3 +1,5 @@
+from typing import Annotated
+
 from rich.console import Console
 from typer import Context, Exit, Option, Typer
 
@@ -8,8 +10,8 @@ console = Console()
 app = Typer()
 
 
-def version(flag):
-    if flag:
+def version_callback(value: bool):
+    if value:
         print(__version__)
         raise Exit(code=0)
 
@@ -17,7 +19,9 @@ def version(flag):
 @app.callback(invoke_without_command=True)
 def main(
     ctx: Context,
-    version: bool = Option(False, callback=version, is_flag=True),
+    version: Annotated[
+        bool | None, Option('--version', callback=version_callback)
+    ] = None,
 ):
     message = """Como utilizar"""
     if ctx.invoked_subcommand:
@@ -25,4 +29,4 @@ def main(
     console.print(message)
 
 
-app.add_typer(new_project.app, name='project')
+app.add_typer(new_project.app, name='new')
