@@ -4,7 +4,7 @@ from rich.console import Console
 from typer import Context, Exit, Option, Typer
 
 from ln_cli import __version__
-from ln_cli.commands import new_project
+from ln_cli.commands import install, new_project
 
 console = Console()
 app = Typer()
@@ -30,3 +30,4 @@ def main(
 
 
 app.add_typer(new_project.app, name='new')
+app.add_typer(install.app, name='install')
