@@ -1,5 +1,6 @@
 import shutil
 import subprocess
+from collections.abc import Callable
 
 packages = {
     'fastapi': [
@@ -29,3 +30,10 @@ def get_package_manager() -> None | str:
     if shutil.which('pacman'):
         return 'pacman'
     return None
+
+
+INSTALL_COMMANDS: dict[str, Callable[[str], list[str]]] = {
+    'apt': lambda pkg: ['sudo', 'apt', 'install', pkg],
+    'dnf': lambda pkg: ['sudo', 'dnf', 'install', pkg],
+    'pacman': lambda pkg: ['sudo', 'pacman', '-S', pkg],
+}
