@@ -4,7 +4,7 @@ from rich.console import Console
 from typer import Context, Exit, Option, Typer
 
 from ln_cli import __version__
-from ln_cli.commands import docker, install, new_project
+from ln_cli.commands import docker, install, linux_tips, new_project
 
 console = Console()
 app = Typer()
@@ -32,3 +32,4 @@ def main(
 app.add_typer(new_project.app, name='new')
 app.add_typer(install.app, name='install')
 app.add_typer(docker.app, name='docker')
+app.add_typer(linux_tips.app, name='linux-tips')
