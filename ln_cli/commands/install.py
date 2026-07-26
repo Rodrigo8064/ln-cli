@@ -45,7 +45,7 @@ def run_install(package_manager: str, package: str) -> None:
 
 def install_pipx(package_manager: str) -> None:
     try:
-        if package_manager in ('apt' or 'dnf'):
+        if package_manager in ('apt', 'dnf'):
             run_install(package_manager, 'pipx')
         else:
             subprocess.run(

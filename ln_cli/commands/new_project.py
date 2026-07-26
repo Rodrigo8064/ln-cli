@@ -30,10 +30,7 @@ def api(
         console.print('Escolha somente uma flag: --fastapi ou --django')
         return
 
-    result = subprocess.run(['poetry', 'new', '--flat', name], check=True)
-    if result.returncode != 0:
-        console.print('[red]Erro ao criar projeto[/]')
-        return
+    subprocess.run(['poetry', 'new', '--flat', name], check=True)
 
     console.print('[green]Projeto criado[/]')
 
