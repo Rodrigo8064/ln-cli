@@ -23,7 +23,20 @@ def main(
         bool | None, Option('--version', callback=version_callback)
     ] = None,
 ):
-    message = """Como utilizar"""
+    message = """
+Como utilizar: [b]lunar [COMANDO] [SUBCOMANDO] [ARGUMENTOS][/]
+
+[b]Exemplos de uso:[/]
+lunar new api project --fastapi
+
+lunar install pipx
+
+lunar docker postgres 17
+
+lunar linux-tips commands texto
+
+Execute [b]lunar --help[/] para mais informações
+    """
     if ctx.invoked_subcommand:
         return
     console.print(message)
