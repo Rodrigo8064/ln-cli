@@ -1,12 +1,26 @@
 import subprocess
 from unittest.mock import patch
 
-from ln_cli.commands.new_project import app
+from ln_cli.commands.new_project import app, create_fastapi_app_file
+
+
+class TestCreateFastapiAppFile:
+    def test_create_app_py_with_template(self, tmp_path):
+        project_dir = tmp_path / 'new_project'
+        project_dir.mkdir()
+
+        create_fastapi_app_file(str(project_dir))
+
+        app_file = project_dir / 'app.py'
+        assert app_file.exists()
+        content = app_file.read_text()
+        assert 'from fastapi import FastAPI, status' in content
+        assert 'app = FastAPI()' in content
 
 
 class TestApiCommand:
     @patch('ln_cli.commands.new_project.subprocess.run')
-    def test_creat_project_without_flags(self, mock_run, runner):
+    def test_create_project_without_flags(self, mock_run, runner):
         mock_run.return_value.returncode = 0
         result = runner.invoke(app, ['new_project'])
         mock_run.assert_called_once_with(
@@ -15,10 +29,11 @@ class TestApiCommand:
         assert result.exit_code == 0
         assert 'Projeto criado' in result.stdout
 
+    @patch('ln_cli.commands.new_project.create_fastapi_app_file')
     @patch('ln_cli.commands.new_project.install_packages')
     @patch('ln_cli.commands.new_project.subprocess.run')
     def test_flag_fastapi_create_new_project_with_fastapi(
-        self, mock_run, mock_install, runner
+        self, mock_run, mock_install, mock_create_app, runner
     ):
         result = runner.invoke(app, ['new_project', '--fastapi'])
         assert result.exit_code == 0
@@ -67,11 +82,12 @@ class TestApiCommand:
             'new_project',
         )
 
+    @patch('ln_cli.commands.new_project.create_fastapi_app_file')
     @patch('ln_cli.commands.new_project.install_packages')
     @patch('ln_cli.commands.new_project.install_packages_dev')
     @patch('ln_cli.commands.new_project.subprocess.run')
     def test_flag_fastapi_and_dev_install_packages(
-        self, mock_run, mock_install_dev, mock_install, runner
+        self, mock_run, mock_install_dev, mock_install, mock_create_app, runner
     ):
         mock_run.return_value.returncode = 0
 

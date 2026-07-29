@@ -1,4 +1,5 @@
 import subprocess
+from pathlib import Path
 from typing import Annotated
 
 from rich.console import Console
@@ -9,6 +10,21 @@ from ln_cli.commands import install_packages, install_packages_dev, packages
 app = Typer()
 
 console = Console()
+
+FASTAPI_APP_TEMPLATE = """from fastapi import FastAPI, status
+
+app = FastAPI()
+
+@app.get('/health_check', status_code=status.HTTP_200_OK)
+def health_check():
+    return {'status': 'ok'}
+"""
+
+
+def create_fastapi_app_file(name: str) -> None:
+    """Cria um app.py básico dentro da pasta do projeto."""
+    app_file = Path(name) / 'app.py'
+    app_file.write_text(FASTAPI_APP_TEMPLATE)
 
 
 @app.command()
@@ -36,6 +52,8 @@ def api(
 
     if fastapi:
         install_packages(packages['fastapi'], name)
+        create_fastapi_app_file(name)
+        console.print('[green]app.py criado![/]')
     if django:
         install_packages(packages['django'], name)
     if dev:
