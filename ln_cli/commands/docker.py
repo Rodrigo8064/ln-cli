@@ -15,6 +15,15 @@ def postgres(
         str, Argument(help='Passa uma TAG para o postgres')
     ] = 'latest',
 ):
+    """
+    Sobe um conteiner com a imagem postgres para testes em api
+
+    Args:
+        tag: Passa uma TAG para o postgres, latest é utilizado por default.
+
+    Exemplo:
+        lunar docker postgres 17
+    """
     postgres_version = f'postgres:{tag}'
     subprocess.run(
         [

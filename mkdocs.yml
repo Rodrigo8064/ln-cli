@@ -8,4 +8,8 @@ theme:
   logo: assets/logo-lunar.png
   favicon: assets/logo-lunar.png
 
-markdown-extensions:
+plugins:
+- mkdocstrings:
+    handlers:
+      python:
+        paths: ["."]

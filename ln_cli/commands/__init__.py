@@ -14,15 +14,51 @@ packages = {
 }
 
 
-def install_packages(packages, name):
+def install_packages(packages: list[str], name: str) -> None:
+    """
+    Instala pacotes via poetry.
+
+    Parameters:
+        packages: Pacotes que serão instalados.
+        name: Nome da pasta onde está o projeto.
+
+    Returns:
+        A função adiciona os pacotes ao projeto e nao retorna None
+
+    Examples:
+        >>> install_packages(['fastapi', 'sqlalquemy'], nova_api)
+    """
     subprocess.run(['poetry', 'add', *packages], cwd=name)
 
 
-def install_packages_dev(packages, name):
+def install_packages_dev(packages: list[str], name: str) -> None:
+    """
+    Instala pacotes de desenvolvimento via poetry.
+
+    Parameters:
+        packages: Pacotes que serão instalados.
+        name: Nome da pasta onde está o projeto.
+
+    Returns:
+        A função adiciona os pacotes ao projeto e nao retorna None
+
+    Examples:
+        >>> install_packages_dev(['ruff', 'taskipy'], nova_api)
+    """
     subprocess.run(['poetry', 'add', '--group', 'dev', *packages], cwd=name)
 
 
 def get_package_manager() -> None | str:
+    """
+    Verifica qual gerenciador de pacotes está instalado no sistema.
+
+    Returns:
+        A função retorna uma string com o nome do gerenciador ou None
+
+    Examples:
+        >>> get_package_manager()
+        'apt'
+    """
     if shutil.which('apt'):
         return 'apt'
     if shutil.which('dnf'):

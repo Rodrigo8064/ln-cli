@@ -41,9 +41,11 @@ quote-style = 'single'
 
 [tool.pytest.ini_options]
 pythonpath = "."
+addopts = "--doctest-modules"
 
 [tool.taskipy.tasks]
 lint = 'ruff check'
+docs = "mkdocs serve"
 pre_format = 'ruff check --fix'
 format = 'ruff format'
 pre_test = 'task lint'
