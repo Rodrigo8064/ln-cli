@@ -1,0 +1,11 @@
+site_name: Lunar cli
+repo_url: https://github.com/Rodrigo8064/ln-cli
+repo_name: rodrigo8064/ln-cli
+
+theme:
+  name: material
+  language: pt-BR
+  logo: assets/logo-lunar.png
+  favicon: assets/logo-lunar.png
+
+markdown-extensions:
