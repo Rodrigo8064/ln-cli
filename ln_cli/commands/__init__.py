@@ -26,7 +26,7 @@ def install_packages(packages: list[str], name: str) -> None:
         A função adiciona os pacotes ao projeto e nao retorna None
 
     Examples:
-        >>> install_packages(['fastapi', 'sqlalquemy'], nova_api)
+        install_packages(['fastapi', 'sqlalquemy'], 'nova_api')
     """
     subprocess.run(['poetry', 'add', *packages], cwd=name)
 
@@ -43,7 +43,7 @@ def install_packages_dev(packages: list[str], name: str) -> None:
         A função adiciona os pacotes ao projeto e nao retorna None
 
     Examples:
-        >>> install_packages_dev(['ruff', 'taskipy'], nova_api)
+        install_packages_dev(['ruff', 'taskipy'], 'nova_api')
     """
     subprocess.run(['poetry', 'add', '--group', 'dev', *packages], cwd=name)
 

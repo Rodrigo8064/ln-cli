@@ -21,7 +21,7 @@ def postgres(
     Args:
         tag: Passa uma TAG para o postgres, latest é utilizado por default.
 
-    Exemplo:
+    Examples:
         lunar docker postgres 17
     """
     postgres_version = f'postgres:{tag}'
@@ -33,11 +33,11 @@ def postgres(
             '--name',
             'app_database',
             '-e',
-            'POSTGRES_USER=app_user',
+            'POSTGRES_USER=user',
             '-e',
-            'POSTGRES_DB=app_db',
+            'POSTGRES_DB=postgres_db',
             '-e',
-            'POSTGRES_PASSWORD=app_password',
+            'POSTGRES_PASSWORD=password',
             '-v',
             'pgdata:/var/lib/postgresql/',
             '-p',
