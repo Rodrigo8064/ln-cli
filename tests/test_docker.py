@@ -23,9 +23,9 @@ class TestPostgresCommand:
     def test_check_env(self, mock_run, runner):
         runner.invoke(app, [])
         args_chamados = mock_run.call_args[0][0]
-        assert 'POSTGRES_USER=app_user' in args_chamados
-        assert 'POSTGRES_DB=app_db' in args_chamados
-        assert 'POSTGRES_PASSWORD=app_password' in args_chamados
+        assert 'POSTGRES_USER=user' in args_chamados
+        assert 'POSTGRES_DB=postgres_db' in args_chamados
+        assert 'POSTGRES_PASSWORD=password' in args_chamados
         assert '5432:5432' in args_chamados
         assert mock_run.call_args.kwargs.get('check') is True
 
