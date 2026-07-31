@@ -1,3 +1,4 @@
 [ZoneTransfer]
 ZoneId=3
-HostUrl=about:internet
+ReferrerUrl=https://claude.ai/chat/ccf0dcfb-3a1a-4bcb-bbe1-17a1dd51c00f
+HostUrl=https://claude.ai/api/organizations/38e6fbd5-05b7-4358-9028-b9a652240963/conversations/ccf0dcfb-3a1a-4bcb-bbe1-17a1dd51c00f/wiggle/download-file?path=%2Fmnt%2Fuser-data%2Foutputs%2Flogo-lunar-transparent.png

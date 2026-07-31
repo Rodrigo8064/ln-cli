@@ -8,6 +8,12 @@ theme:
   logo: assets/logo-lunar.png
   favicon: assets/logo-lunar.png
 
+markdown_extensions: 
+  - attr_list
+
+extra_css:
+  - stylesheets/extra.css
+
 plugins:
 - mkdocstrings:
     handlers:

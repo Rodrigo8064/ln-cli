@@ -1,3 +1,4 @@
+![logo do projeto](assets/logo-lunar.png){ width="300" .center }
 # Bem vindo ao Lunar CLI
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
