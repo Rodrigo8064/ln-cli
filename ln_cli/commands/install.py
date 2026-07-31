@@ -15,6 +15,14 @@ class InstallError(Exception):
 
 
 def _require_package_manager() -> str:
+    """
+    Retorna o gerenciador de pacotes encontrado no sistema.
+
+    Returns:
+        Uma string com o comando do gerenciador de pacotes.
+    Raises:
+        Exit: Finaliza o processo com o código 1.
+    """
     package_manager = get_package_manager()
     if package_manager is None:
         console.print(
@@ -25,7 +33,22 @@ def _require_package_manager() -> str:
 
 
 def run_install(package_manager: str, package: str) -> None:
-    """Instala `package` usando o `package_manager` informado."""
+    """
+    Instala `package` usando o `package_manager` informado.
+
+    Parameters:
+        package_manager: O gerenciador de pacotes do sistema.
+        package: Pacote a ser instalado.``
+
+    Raises:
+        InstallError: de KeyError gerenciador de pacotes nao encontrado.
+        InstallError: de CalledProcessError falha ao instalar pacote.
+        InstallError: de FileNotFoundError Comando não encontrado.
+
+    Examples:
+        run_install('apt', 'curl')
+        run_install('dnf', 'lazygit')
+    """
     try:
         command = INSTALL_COMMANDS[package_manager](package)
         subprocess.run(command, check=True)
@@ -44,6 +67,20 @@ def run_install(package_manager: str, package: str) -> None:
 
 
 def install_pipx(package_manager: str) -> None:
+    """
+    Isntala o pipx via gerenciador de pacotes
+
+    Parameters:
+        package_manager: O gerenciador de pacotes do sistema.
+
+    Raises:
+        InstallError: de CalledProcessError falha ao instalar pacote.
+        InstallError: de FileNotFoundError Comando não encontrado.
+
+    Examples:
+        install_pipx('apt')
+        install_pipx('dnf')
+    """
     try:
         if package_manager in ('apt', 'dnf'):
             run_install(package_manager, 'pipx')
@@ -64,6 +101,15 @@ def install_pipx(package_manager: str) -> None:
 
 
 def install_curl(package_manager: str) -> None:
+    """
+    Vefica se curl está instalado e caso não estejá realiza a instalação.
+
+    Parameters:
+        package_manager: O gerenciador de pacotes do sistema.
+
+    Examples:
+        install_curl('apt')
+    """
     if shutil.which('curl'):
         return
     run_install(package_manager, 'curl')
