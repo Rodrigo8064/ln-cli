@@ -22,7 +22,17 @@ def health_check():
 
 
 def create_fastapi_app_file(name: str) -> None:
-    """Cria um app.py básico dentro da pasta do projeto."""
+    """
+    Cria um app.py básico dentro da pasta do projeto.
+    Parameters:
+        name: Nome da pasta onde o arquivo deve ser criado
+
+    Returns:
+        A função adiciona o arquivo e retorna None
+
+    Examples:
+        create_fastapi_app_file('novo_projeto')
+    """
     app_file = Path(name) / 'app.py'
     app_file.write_text(FASTAPI_APP_TEMPLATE)
 
