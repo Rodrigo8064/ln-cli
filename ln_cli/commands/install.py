@@ -20,8 +20,13 @@ def _require_package_manager() -> str:
 
     Returns:
         Uma string com o comando do gerenciador de pacotes.
+
     Raises:
         Exit: Finaliza o processo com o código 1.
+
+    Examples:
+        >>> _require_package_manager()
+        'apt'
     """
     package_manager = get_package_manager()
     if package_manager is None:

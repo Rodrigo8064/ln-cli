@@ -25,19 +25,8 @@ def tips_for_commands_type(command_type: str) -> dict:
         KeyError: Quando é passado um tipo que não está listado.
 
     Examples:
-        tips_for_commands_type('texto')
-        {'grep': 'pesquisa por termos dentro de arquivos',
-        'sed': 'edita texto em fluxo (substituições, remoções, ...)',
-        'awk': 'processa e manipula texto em colunas/campos',
-        'cut': 'extrai colunas ou campos de uma linha',
-        'sort': 'ordena linhas de um arquivo',
-        'uniq': 'remove ou conta linhas duplicadas',
-        'wc': 'conta linhas, palavras e caracteres',
-        'tr': 'traduz ou remove caracteres',
-        'cat': 'mostra o conteúdo completo de um arquivo',
-        'head': 'mostra as primeiras linhas de um arquivo',
-        'tail': 'mostra as últimas linhas',
-        'less': 'visualiza arquivos grandes com paginação'}
+        >>> tips_for_commands_type('texto')
+        {'grep': 'pesquisa por termos dentro de arquivos', 'sed': 'edita texto em fluxo (substituições, remoções, ...)', 'awk': 'processa e manipula texto em colunas/campos', 'cut': 'extrai colunas ou campos de uma linha', 'sort': 'ordena linhas de um arquivo', 'uniq': 'remove ou conta linhas duplicadas', 'wc': 'conta linhas, palavras e caracteres', 'tr': 'traduz ou remove caracteres', 'cat': 'mostra o conteúdo completo de um arquivo', 'head': 'mostra as primeiras linhas de um arquivo', 'tail': 'mostra as últimas linhas', 'less': 'visualiza arquivos grandes com paginação'}
     """
     command_type = command_type.lower()
     try:
