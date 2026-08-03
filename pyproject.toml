@@ -2,10 +2,19 @@
 name = "ln-cli"
 version = "0.1.0"
 description = "Lunar é um CLI para ajudar com rotinas relaciondas ao python"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
     {name = "rodrigo8064",email = "rodrigooliveiradel@gmail.com"}
 ]
 readme = "README.md"
+packages = [{include = "ln_cli"}]
+classifiers = [
+    "Environment :: Console",
+    "Natural Language :: Portuguese (Brazilian)",
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 3.13",
+]
 requires-python = ">=3.13, <4.0"
 dependencies = [
     "typer[all] (>=0.27.0,<0.28.0)"
@@ -32,6 +41,10 @@ doc = [
     "mkdocstrings-python (>=2.0.5,<3.0.0)",
     "mkdocs-macros-plugin (>=1.5.0,<2.0.0)"
 ]
+
+[tool.poetry.urls]
+"Documentação" = "https://ln-cli.readthedocs.io/pt-br/latest/"
+"Código" = "https://github.com/Rodrigo8064/ln-cli"
 
 [tool.ruff]
 line-length = 79
