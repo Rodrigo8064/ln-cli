@@ -1,6 +1,6 @@
 [project]
-name = "ln-cli"
-version = "0.1.0"
+name = "lunar-toolkit-cli"
+version = "0.1.1"
 description = "Lunar é um CLI para ajudar com rotinas relaciondas ao python"
 license = "MIT"
 license-files = ["LICENSE"]
@@ -8,7 +8,6 @@ authors = [
     {name = "rodrigo8064",email = "rodrigooliveiradel@gmail.com"}
 ]
 readme = "README.md"
-packages = [{include = "ln_cli"}]
 classifiers = [
     "Environment :: Console",
     "Natural Language :: Portuguese (Brazilian)",
@@ -20,6 +19,8 @@ dependencies = [
     "typer[all] (>=0.27.0,<0.28.0)"
 ]
 
+[tool.poetry]
+packages = [{ include = "ln_cli" }]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

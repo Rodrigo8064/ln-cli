@@ -39,7 +39,7 @@ def create_fastapi_app_file(name: str) -> None:
 
 @app.command()
 def api(
-    name: Annotated[str, Argument(..., help='Cria um projeto')],
+    name: Annotated[str, Argument(..., help='Nome do Projeto')],
     fastapi: Annotated[
         bool,
         Option('--fastapi', help='Instala dependências do FastAPI'),
