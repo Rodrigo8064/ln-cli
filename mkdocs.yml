@@ -7,15 +7,47 @@ theme:
   language: pt-BR
   logo: assets/logo-lunar.png
   favicon: assets/logo-lunar.png
+  palette:
+  - media: "(prefers-color-scheme)"
+    toggle:
+      icon: material/lightbulb-auto
+      name: Switch to light mode
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
+    primary: black
+    accent: teal
+    toggle:
+      icon: material/lightbulb
+      name: Switch to dark mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    primary: black
+    accent: teal
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to system preference
 
 markdown_extensions: 
   - attr_list
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
 
 extra_css:
   - stylesheets/extra.css
 
+watch:
+   - ln_cli
+
 plugins:
+- macros
 - mkdocstrings:
     handlers:
       python:
         paths: ["."]
+
