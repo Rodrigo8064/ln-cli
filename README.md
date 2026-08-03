@@ -1,4 +1,3 @@
-![logo do projeto](assets/logo-lunar.png){ width="300" .center }
 # Bem vindo ao Lunar CLI
 
 Lunar é um CLI para auxiliar no início da criação de projetos `python`, permitindo que você, através de uma linha de comando, crie a estrutura inicial de um projeto, utilizando poetry como gerenciador de dependências, entre outras funcionalidades.
