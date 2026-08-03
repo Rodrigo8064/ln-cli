@@ -26,7 +26,10 @@ def _require_package_manager() -> str:
 
     Examples:
         >>> _require_package_manager()
-        'apt'
+        'dnf'
+
+    !!!Nota
+        Cada sistema vai retornar um valor está função
     """
     package_manager = get_package_manager()
     if package_manager is None:
@@ -51,8 +54,8 @@ def run_install(package_manager: str, package: str) -> None:
         InstallError: de FileNotFoundError Comando não encontrado.
 
     Examples:
-        run_install('apt', 'curl')
-        run_install('dnf', 'lazygit')
+        >>> run_install('apt', 'curl')
+        >>> run_install('dnf', 'lazygit')
     """
     try:
         command = INSTALL_COMMANDS[package_manager](package)
@@ -83,8 +86,8 @@ def install_pipx(package_manager: str) -> None:
         InstallError: de FileNotFoundError Comando não encontrado.
 
     Examples:
-        install_pipx('apt')
-        install_pipx('dnf')
+        >>> install_pipx('apt')
+        >>> install_pipx('dnf')
     """
     try:
         if package_manager in ('apt', 'dnf'):
@@ -113,7 +116,7 @@ def install_curl(package_manager: str) -> None:
         package_manager: O gerenciador de pacotes do sistema.
 
     Examples:
-        install_curl('apt')
+        >>> install_curl('apt')
     """
     if shutil.which('curl'):
         return

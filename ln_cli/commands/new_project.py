@@ -31,7 +31,7 @@ def create_fastapi_app_file(name: str) -> None:
         A função adiciona o arquivo e retorna None
 
     Examples:
-        create_fastapi_app_file('novo_projeto')
+        >>> create_fastapi_app_file('novo_projeto')
     """
     app_file = Path(name) / 'app.py'
     app_file.write_text(FASTAPI_APP_TEMPLATE)

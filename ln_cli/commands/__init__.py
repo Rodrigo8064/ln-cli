@@ -1,8 +1,26 @@
+"""
+Helper para o projeto com funções que podem ser utilizadas nos comandos.
+
+Attributes:
+    packages: Um dicionario com pacotes padrões para instalação nos projetos.
+    INSTALL_COMMANDS: Um dicionario com comandos para instalação de pacotes via gerenciador de pacotes.
+    COMMANDS_TYPES: Um dicionario com clis e suas definições de uso para linux.
+
+Como importar para o projeto:
+
+```Python
+from ln_cli.commands import INSTALL_COMMANDS
+
+>>> INSTALL_COMMANDS
+{'apt': lambda pkg: ['sudo', 'apt', 'install', pkg], 'dnf': lambda pkg: ['sudo', 'dnf', 'install', pkg], 'pacman': lambda pkg: ['sudo', 'pacman', '-S', pkg],}
+```
+"""
+
 import shutil
 import subprocess
 from collections.abc import Callable
 
-packages = {
+packages: dict[str, list[str]] = {
     'fastapi': [
         'fastapi[standard]',
         'sqlalchemy',
@@ -23,10 +41,10 @@ def install_packages(packages: list[str], name: str) -> None:
         name: Nome da pasta onde está o projeto.
 
     Returns:
-        A função adiciona os pacotes ao projeto e nao retorna None
+        A função adiciona os pacotes ao projeto e nao retorna None.
 
     Examples:
-        install_packages(['fastapi', 'sqlalquemy'], 'nova_api')
+        >>> install_packages(['fastapi', 'sqlalchemy'], 'nova_api')
     """
     subprocess.run(['poetry', 'add', *packages], cwd=name)
 
@@ -40,10 +58,10 @@ def install_packages_dev(packages: list[str], name: str) -> None:
         name: Nome da pasta onde está o projeto.
 
     Returns:
-        A função adiciona os pacotes ao projeto e nao retorna None
+        A função adiciona os pacotes ao projeto e nao retorna None.
 
     Examples:
-        install_packages_dev(['ruff', 'taskipy'], 'nova_api')
+        >>> install_packages_dev(['ruff', 'taskipy'], 'nova_api')
     """
     subprocess.run(['poetry', 'add', '--group', 'dev', *packages], cwd=name)
 
@@ -57,7 +75,10 @@ def get_package_manager() -> None | str:
 
     Examples:
         >>> get_package_manager()
-        'apt'
+        'dnf'
+
+    !!!Nota
+        Cada sistema vai retornar um valor está função
     """
     if shutil.which('apt'):
         return 'apt'
@@ -147,7 +168,7 @@ COMMANDS_TYPES: dict[str, dict[str, str]] = {
         'uptime': 'mostra há quanto tempo o sistema está ligado',
         'uname': 'mostra informações do sistema/kernel (uname -a para detalhes)',
     },
-    'Redirecionamento': {
+    'redirecionamento': {
         '|': 'Encadeira comandos',
         '>/>>': 'Redireciona saída para um arquivo',
         '&&': 'Executa o próximo comando somente se o anterior tiver sucesso',
