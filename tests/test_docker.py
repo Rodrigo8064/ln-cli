@@ -30,6 +30,16 @@ class TestPostgresCommand:
         assert mock_run.call_args.kwargs.get('check') is True
 
     @patch('ln_cli.commands.docker.subprocess.run')
+    def test_create_conteiner_with_args(self, mock_run, runner):
+        runner.invoke(app, ['latest', 'name', 'user2', 'db', '5433'])
+        args_chamados = mock_run.call_args[0][0]
+        assert 'POSTGRES_USER=user2' in args_chamados
+        assert 'POSTGRES_DB=db' in args_chamados
+        assert 'POSTGRES_PASSWORD=password' in args_chamados
+        assert '5432:5433' in args_chamados
+        assert mock_run.call_args.kwargs.get('check') is True
+
+    @patch('ln_cli.commands.docker.subprocess.run')
     def test_falha_ao_iniciar_docker_propaga_excecao(self, mock_run, runner):
         mock_run.side_effect = subprocess.CalledProcessError(1, 'docker')
         result = runner.invoke(app, [])
